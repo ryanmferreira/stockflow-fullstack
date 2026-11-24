@@ -1,0 +1,26 @@
+info:
+  name: add an invalid product (400)
+  type: http
+  seq: 5
+
+http:
+  method: POST
+  url: http://localhost:8080/api/produtos
+  body:
+    type: json
+    data: |-
+      {
+        "nome": "",
+        "descricao": "Produto sem nome",
+        "categoria": "Papelaria",
+        "quantidade": -1,
+        "estoqueMinimo": 0
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
