@@ -1,0 +1,152 @@
+<section class="panel detail-panel">
+  @switch (mode) {
+  @case ('empty') {
+  <div class="empty-state">
+    <h2>Nenhum produto selecionado</h2>
+    <p>Escolha um produto na lista ao lado ou cadastre um novo.</p>
+    <button class="btn btn-primary" type="button" (click)="create.emit()">
+      Novo produto
+    </button>
+  </div>
+  }
+
+  @case ('view') {
+  @if (produto) {
+  <header class="detail-header">
+    <div>
+      <span class="eyebrow">Produto #{{ produto.id }}</span>
+      <h2>{{ produto.nome }}</h2>
+    </div>
+    <div class="badges">
+      <span class="badge" [attr.data-category]="produto.categoria">
+        {{ produto.categoria }}
+      </span>
+      @if (isEstoqueBaixo(produto)) {
+      <span class="badge badge-warning" [attr.data-stock]="'baixo'">
+        Estoque baixo
+      </span>
+      }
+    </div>
+  </header>
+
+  <dl class="detail-grid">
+    <div class="detail-item">
+      <dt>Categoria</dt>
+      <dd>{{ produto.categoria }}</dd>
+    </div>
+    <div class="detail-item">
+      <dt>Quantidade em estoque</dt>
+      <dd>{{ produto.quantidade }}</dd>
+    </div>
+    <div class="detail-item">
+      <dt>Estoque mínimo</dt>
+      <dd>{{ produto.estoqueMinimo }}</dd>
+    </div>
+    <div class="detail-item full">
+      <dt>Descrição</dt>
+      <dd class="description">{{ produto.descricao || 'Sem descrição.' }}</dd>
+    </div>
+  </dl>
+
+  <div class="actions">
+    <button class="btn btn-primary" type="button" (click)="edit.emit()">Editar</button>
+    <button class="btn btn-secondary" type="button" (click)="movimentar.emit(produto)">
+      Movimentar estoque
+    </button>
+    <button class="btn btn-danger" type="button" (click)="remove.emit(produto.id)">
+      Excluir
+    </button>
+  </div>
+  }
+  }
+
+  @default {
+  <form class="form" [formGroup]="form" (ngSubmit)="submit()">
+    <header class="detail-header">
+      <div>
+        <span class="eyebrow">
+          {{ mode === 'create' ? 'Novo produto' : 'Editando produto #' + produto?.id }}
+        </span>
+        <h2>{{ mode === 'create' ? 'Cadastrar produto' : 'Editar produto' }}</h2>
+      </div>
+    </header>
+
+    <div class="field">
+      <label class="label" for="nome">Nome *</label>
+      <input
+        id="nome"
+        class="input"
+        type="text"
+        formControlName="nome"
+        placeholder="Ex.: Teclado mecânico"
+      />
+      @if (form.controls.nome.touched && form.controls.nome.invalid) {
+      <span class="error-text">O nome é obrigatório.</span>
+      }
+    </div>
+
+    <div class="form-row">
+      <div class="field">
+        <label class="label" for="categoria">Categoria *</label>
+        <input
+          id="categoria"
+          class="input"
+          type="text"
+          formControlName="categoria"
+          placeholder="Ex.: Periféricos"
+        />
+        @if (form.controls.categoria.touched && form.controls.categoria.invalid) {
+        <span class="error-text">A categoria é obrigatória.</span>
+        }
+      </div>
+
+      <div class="field">
+        <label class="label" for="quantidade">Quantidade *</label>
+        <input
+          id="quantidade"
+          class="input"
+          type="number"
+          min="0"
+          step="1"
+          formControlName="quantidade"
+        />
+        @if (form.controls.quantidade.touched && form.controls.quantidade.invalid) {
+        <span class="error-text">Informe uma quantidade maior ou igual a zero.</span>
+        }
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label" for="estoqueMinimo">Estoque mínimo *</label>
+      <input
+        id="estoqueMinimo"
+        class="input"
+        type="number"
+        min="0"
+        step="1"
+        formControlName="estoqueMinimo"
+      />
+      @if (form.controls.estoqueMinimo.touched && form.controls.estoqueMinimo.invalid) {
+      <span class="error-text">Informe um estoque mínimo maior ou igual a zero.</span>
+      }
+    </div>
+
+    <div class="field">
+      <label class="label" for="descricao">Descrição</label>
+      <textarea
+        id="descricao"
+        class="input"
+        rows="5"
+        formControlName="descricao"
+        placeholder="Detalhes opcionais do produto"
+      ></textarea>
+    </div>
+
+    <div class="actions">
+      <button class="btn btn-primary" type="submit">Salvar</button>
+      <button class="btn btn-ghost" type="button" (click)="cancel.emit()">Cancelar</button>
+    </div>
+  </form>
+  }
+  }
+</section>
