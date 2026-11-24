@@ -1,0 +1,23 @@
+info:
+  name: register stock entry
+  type: http
+  seq: 7
+
+http:
+  method: PATCH
+  url: http://localhost:8080/api/produtos/4/movimentacao
+  body:
+    type: json
+    data: |-
+      {
+        "tipo": "ENTRADA",
+        "quantidade": 5
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+  forwardAuthorizationHeader: true
