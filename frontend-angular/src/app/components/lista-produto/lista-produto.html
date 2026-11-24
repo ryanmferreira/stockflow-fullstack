@@ -1,0 +1,64 @@
+<aside class="panel">
+  <div class="list-header">
+    <div class="list-title">
+      <h2>Produtos</h2>
+      <div class="list-actions">
+        <span class="count">
+          {{ produtos.length }} {{ produtos.length === 1 ? 'produto' : 'produtos' }}
+        </span>
+        <button class="btn-link" type="button" (click)="refresh.emit()">Atualizar</button>
+      </div>
+    </div>
+
+    <select
+      class="input"
+      [value]="filter"
+      (change)="onFilterChange($event)"
+      aria-label="Filtrar produtos"
+    >
+      <option value="">Todos os produtos</option>
+      <option value="ESTOQUE_BAIXO">Estoque baixo</option>
+      <option value="ESTOQUE_NORMAL">Estoque normal</option>
+    </select>
+  </div>
+
+  @if (loading) {
+    <p class="empty-list">Carregando produtos...</p>
+  } @else if (produtos.length === 0) {
+    <div class="empty-list">
+      <p>Nenhum produto encontrado.</p>
+      <button class="btn btn-primary" type="button" (click)="create.emit()">
+        Cadastrar produto
+      </button>
+    </div>
+  } @else {
+    <ul class="produto-list">
+      @for (produto of produtos; track produto.id) {
+        <li>
+          <button
+            class="produto-item"
+            type="button"
+            [class.selected]="produto.id === selectedId"
+            [class.low-stock]="isEstoqueBaixo(produto)"
+            (click)="select.emit(produto)"
+          >
+            <span class="produto-title">{{ produto.nome }}</span>
+            <span class="produto-meta">
+              {{ produto.categoria }} • Qtd: {{ produto.quantidade }} (Mín: {{ produto.estoqueMinimo }})
+            </span>
+            <span class="badges">
+              <span class="badge" [attr.data-category]="produto.categoria">
+                {{ produto.categoria }}
+              </span>
+              @if (isEstoqueBaixo(produto)) {
+                <span class="badge badge-warning" [attr.data-stock]="'baixo'">
+                  Estoque baixo
+                </span>
+              }
+            </span>
+          </button>
+        </li>
+      }
+    </ul>
+  }
+</aside>
