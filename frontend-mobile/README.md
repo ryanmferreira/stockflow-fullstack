@@ -1,56 +1,71 @@
-# Welcome to your Expo app 👋
+# StockFlow — Mobile
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+![Expo](https://img.shields.io/badge/Expo-SDK%2058-000020?logo=expo&logoColor=white)
+![React Native](https://img.shields.io/badge/React_Native-0.88-61DAFB?logo=react&logoColor=black)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)
 
-## Get started
+Aplicativo mobile do StockFlow, feito em **Expo** com **React Native**. Usa a mesma API em Spring Boot do painel web e serve para consultar o estoque pelo celular, cadastrar e editar produtos e registrar entradas e saídas.
 
-1. Install dependencies
+## Tecnologias
 
-   ```bash
-   npm install
-   ```
+- Expo SDK 58
+- React Native 0.88 e React 19
+- Expo Router para a navegação
+- TypeScript 6
+- Axios para chamar a API
 
-2. Start the app
+## Como rodar
 
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+Você precisa do Node.js, da API rodando na porta 8080 e do app Expo Go (ou um emulador) no celular.
 
 ```bash
-npm run reset-project
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+Depois aperte `a` para Android, `i` para iOS ou `w` para abrir no navegador. Também dá para ler o QR code com o Expo Go.
 
-### Other setup steps
+O app pega o IP da sua máquina pelo servidor do Expo, então celular e computador precisam estar na mesma rede. Se a API estiver em outro endereço, ajuste `src/services/produtoService.ts`.
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+## Scripts
 
-## Learn more
+| Comando | O que faz |
+| --- | --- |
+| `npm start` | Sobe o servidor do Expo |
+| `npm run android` | Abre no Android |
+| `npm run ios` | Abre no iOS |
+| `npm run web` | Abre no navegador |
+| `npm run lint` | Roda o ESLint |
 
-To learn more about developing your project with Expo, look at the following resources:
+## O que tem no app
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Lista de produtos com filtro por categoria e por estoque baixo.
+- Atualização puxando a lista para baixo.
+- Detalhe com saldo, estoque mínimo e aviso de estoque baixo.
+- Cadastro e edição com validação, além de exclusão com confirmação.
+- Movimentação de entrada e saída direto no detalhe do produto.
 
-## Join the community
+## Estrutura
 
-Join our community of developers creating universal apps.
+```
+src/app
+├── index.tsx          lista de produtos
+├── produto/[id].tsx   detalhe e movimentação
+├── produto/form.tsx   cadastro e edição
+└── _layout.tsx        navegação
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+As telas usam o Expo Router: cada arquivo dentro de `src/app` é uma rota.
+
+## Qualidade
+
+```bash
+npm run lint
+npx tsc --noEmit
+```
+
+## Outros projetos
+
+- [API em Spring Boot](../backend)
+- [Painel web em Angular](../frontend-angular)
