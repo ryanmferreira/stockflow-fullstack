@@ -1,5 +1,3 @@
-import { Platform } from 'react-native';
-
 export const colors = {
   background: '#121212',
   surface: '#1b1b1b',
@@ -20,5 +18,9 @@ export const colors = {
 };
 
 export const fonts = {
-  serif: Platform.OS === 'android' ? 'serif' : 'Georgia',
+  regular: 'NunitoSans_400Regular',
+  medium: 'NunitoSans_500Medium',
+  semibold: 'NunitoSans_600SemiBold',
+  bold: 'NunitoSans_700Bold',
+  heading: 'NunitoSans_700Bold',
 };

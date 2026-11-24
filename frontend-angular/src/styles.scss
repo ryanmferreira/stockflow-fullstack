@@ -1,3 +1,35 @@
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/NunitoSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/NunitoSans-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/NunitoSans-SemiBold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Nunito Sans';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/NunitoSans-Bold.ttf') format('truetype');
+}
+
 :root {
   --bg: #121212;
   --surface: #1b1b1b;
@@ -34,6 +66,7 @@ body {
   color: var(--text);
   color-scheme: dark;
   font-family:
+    'Nunito Sans',
     'Segoe UI',
     system-ui,
     -apple-system,
@@ -42,7 +75,7 @@ body {
     Arial,
     sans-serif;
   font-size: 15px;
-  line-height: 1.45;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -55,9 +88,9 @@ p {
 
 h1,
 h2 {
-  font-family: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  font-family: inherit;
+  font-weight: 700;
+  letter-spacing: -0.012em;
 }
 
 .panel {

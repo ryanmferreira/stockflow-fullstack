@@ -1,4 +1,4 @@
-# StockFlow — Web
+# StockFlow: Web
 
 ![Angular](https://img.shields.io/badge/Angular-22-DD0031?logo=angular&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6-3178C6?logo=typescript&logoColor=white)
@@ -46,17 +46,14 @@ A URL da API está em `src/app/services/produto.service.ts`. Se o backend mudar 
 
 ## Estrutura
 
-```
-src/app
-├── components/
-│   ├── lista-produto/
-│   └── detalhes-produto/
-├── models/
-├── services/
-├── app.ts
-├── app.html
-└── app.config.ts
-```
+- `components/`
+  - `lista-produto/`
+  - `detalhes-produto/`
+- `models/`
+- `services/`
+- `app.ts`
+- `app.html`
+- `app.config.ts`
 
 ## Outros projetos
 

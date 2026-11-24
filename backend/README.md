@@ -1,9 +1,9 @@
-# StockFlow — API
+# StockFlow: API
 
 ![Spring Boot](https://img.shields.io/badge/Spring_Boot-4.2-6DB33F?logo=springboot&logoColor=white)
 ![Java](https://img.shields.io/badge/Java-25-ED8B00?logo=openjdk&logoColor=white)
 ![Spring Data JPA](https://img.shields.io/badge/Spring_Data_JPA-6DB33F?logo=spring&logoColor=white)
-![H2](https://img.shields.io/badge/H2-em%20mem%C3%B3ria-4479A1)
+![H2](https://img.shields.io/badge/H2-4479A1)
 ![Maven](https://img.shields.io/badge/Maven-wrapper-C71A36?logo=apachemaven&logoColor=white)
 
 API REST do StockFlow, feita em **Spring Boot** com **Java 25**. Ela guarda os produtos, registra entradas e saídas e informa quando o saldo está abaixo do mínimo.
@@ -78,16 +78,13 @@ Na resposta aparece também o campo `estoqueBaixo`, que é `true` quando `quanti
 
 ## Estrutura
 
-```
-src/main/java/com/stockflow/backend
-├── controllers/   endpoints HTTP
-├── services/      regras de negócio
-├── repositories/  acesso ao banco
-├── entities/      modelo JPA
-├── dtos/          entrada e saída da API
-├── mappers/       entity <-> DTO
-└── config/        CORS
-```
+- `controllers/`: endpoints HTTP
+- `services/`: regras de negócio
+- `repositories/`: acesso ao banco
+- `entities/`: modelo JPA
+- `dtos/`: entrada e saída da API
+- `mappers/`: conversão entre entity e DTO
+- `config/`: CORS
 
 ## Testes
 

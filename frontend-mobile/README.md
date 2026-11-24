@@ -1,4 +1,4 @@
-# StockFlow — Mobile
+# StockFlow: Mobile
 
 ![Expo](https://img.shields.io/badge/Expo-SDK%2058-000020?logo=expo&logoColor=white)
 ![React Native](https://img.shields.io/badge/React_Native-0.88-61DAFB?logo=react&logoColor=black)
@@ -48,13 +48,10 @@ O app pega o IP da sua máquina pelo servidor do Expo, então celular e computad
 
 ## Estrutura
 
-```
-src/app
-├── index.tsx          lista de produtos
-├── produto/[id].tsx   detalhe e movimentação
-├── produto/form.tsx   cadastro e edição
-└── _layout.tsx        navegação
-```
+- `index.tsx`: lista de produtos
+- `produto/[id].tsx`: detalhe e movimentação
+- `produto/form.tsx`: cadastro e edição
+- `_layout.tsx`: navegação
 
 As telas usam o Expo Router: cada arquivo dentro de `src/app` é uma rota.
 
